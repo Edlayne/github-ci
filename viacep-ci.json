@@ -1,0 +1,64 @@
+{
+	"info": {
+		"_postman_id": "7765a9f4-67b4-4c62-8dfd-425e4deab234",
+		"name": "viacep-consulta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22568484"
+	},
+	"item": [
+		{
+			"name": "viacep-consulta",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"function zipCode(){\r",
+							"\r",
+							"var zipCode = [\"02077-045\", \"13458-580\",\"03015-017\",\"05892-387\",\"08452-252\",\"04877-265\",\"00320-685\",\"04182-125\",\"02987-265\",\r",
+							"\"04182-125\",\"02987-265\",\"08240-174\",\"04405-185\",\"88058-115\",\"88020-230\",\"88020-231\",\"88090-561\",\"88066-405\",\"88058-256\",\r",
+							"\"88040-445\",\"88048-418\",\"88066-420\",\"88066-407\",\"52031-216\",\"50920-825\",\"50810-065\",\"52098-168\",\"52160-231\",\"52121-032\",\r",
+							"\"50790-140\",\"51310-540\",\"52190-480\",\"50610-631\",\"41321-205\",\"41320-210\",\"41321-240\",\"02323-070\"];\r",
+							"\r",
+							"var randomItem = zipCode[Math.floor(Math.random() * zipCode.length)];\r",
+							"\r",
+							"return randomItem\r",
+							"\r",
+							"}\r",
+							"\r",
+							"pm.variables.set(\"zipCode\", zipCode());"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/{{zipCode}}/json/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"{{zipCode}}",
+						"json",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
